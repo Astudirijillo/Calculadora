@@ -9,44 +9,85 @@ public class Operaciones {
 	public String operation;
 	public double result;
 
-	public void setOperandOne(double operandOne) {
-		this.operandOne = operandOne;
-	}
+	public ArrayList<Double> valores = new ArrayList<>();
+	public ArrayList<String> operadores = new ArrayList<>();
 
-	public void setOperandTwo(double operandTwo) {
-		this.operandTwo = operandTwo;
+	public String getOperation() {
+		return operation;
 	}
 
 	public void setOperation(String operation) {
 		this.operation = operation;
 	}
 
-	public void setOpperation(String operation) {
-		if (operation.equals("+") || operation.equals("-")) {
-			this.operation = operation;
-		} else {
-			System.out.println("Operador incorrecto");
-		}
+	public double getOperandOne() {
+		return operandOne;
 	}
 
-	public double performOperation(ArrayList<Integer> val, ArrayList<String> op) {
-		/*
-		 * if (this.operation.equals("+")) { this.result = operandOne + operandTwo; }
-		 * else if (this.operation.equals("-")) { this.result = operandOne - operandTwo;
-		 * }
-		 */
-		int val1 = 0;
-		for (int i = 0; i < val.size(); i++) {
-			val1 = val.indexOf(i);
-			for (int x = 0; i < op.size(); i++) {
-			}
-		}
+	public void setOperandOne(double operandOne) {
+		this.operandOne = operandOne;
+	}
 
-		return result;
+	public double getOperandTwo() {
+		return operandTwo;
+	}
+
+	public void setOperandTwo(double operandTwo) {
+		this.operandTwo = operandTwo;
 	}
 
 	public double getResult() {
 		return result;
+	}
+
+	public void setResult(double result) {
+		this.result = result;
+	}
+
+	public void performOperation() {
+		switch (operation) {
+		case "+":
+			setResult(getResult() + (getOperandOne() + getOperandTwo()));
+			break;
+		case "-":
+			setResult(getResult() + (getOperandOne() - getOperandTwo()));
+			break;
+		case "*":
+			setResult(getResult() + (getOperandOne() * getOperandTwo()));
+			break;
+		case "/":
+			setResult(getResult() + (getOperandOne() / getOperandTwo()));
+			break;
+		}
+	}
+
+	public void performOperation(Double valor) {
+		valores.add(valor);
+	}
+
+	public void performOperation(int valor) {
+		Double d = (double) valor;
+		valores.add(d);
+	}
+
+	public void performOperation(String operacion) {
+		operadores.add(operacion);
+	}
+
+	public ArrayList<Double> getValores() {
+		return valores;
+	}
+
+	public ArrayList<String> getOperadores() {
+		return operadores;
+	}
+
+	public void setValores(ArrayList<Double> valores) {
+		this.valores = valores;
+	}
+
+	public void setOperadores(ArrayList<String> operadores) {
+		this.operadores = operadores;
 	}
 
 }
