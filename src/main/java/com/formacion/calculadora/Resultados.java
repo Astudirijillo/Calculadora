@@ -22,21 +22,30 @@ public class Resultados extends Operaciones {
 		this.isDiv = isDiv;
 	}
 
-	public void executeOperacion(int i) {
-		while (i == 0) {
-			setOperandOne(getValores().get(i));
-			setOperandTwo(getValores().get(i + 1));
-			setOperation(getOperadores().get(i));
+	public void executeOperacion() {
+		double auxResult = 0.0;
+		int ciclo = 0;
+		do {
+			setOperandOne(getValores().get(ciclo));
+			setOperandTwo(getValores().get(ciclo + 1));
+			setOperation(getOperadores().get(ciclo));
 			performOperation();
-			if (getOperadores().size() == 0 && getValores().size() == 0) {
-				i++;
+			auxResult += getResult();
+			if (getValores().size() == 1 || getOperadores().size() == 1) {
+				ciclo++;
+			} else {
+				getValores().remove(ciclo);
+				getValores().remove(ciclo + 1);
+				getOperadores().remove(ciclo);
 			}
-		}
+		} while (ciclo != 0);
+		super.setResult(auxResult);
 	}
 
 	@Override
 	public double getResult() {
-		executeOperacion(0);
+		super.getResult();
+		executeOperacion();
 		return getResult();
 	}
 
